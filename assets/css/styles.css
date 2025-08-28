@@ -32,6 +32,8 @@ body {
 .seq-item { font-size: clamp(28px, 6vw, 58px); font-weight: 800; letter-spacing: 2px; opacity: 0; transform: scale(0.9); }
 
 .winner-card { position: absolute; inset: 0; margin: auto; width: min(680px, 92%); height: min(360px, 60vh); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); opacity: 0; transform: scale(0.92); pointer-events: none; }
+.winner-card[aria-hidden="true"] { display: none; }
+.winner-card[aria-hidden="false"] { display: grid; }
 .winner-card .badge { justify-self: start; background: linear-gradient(135deg, var(--primary), #fde68a); color: var(--primary-contrast); font-weight: 900; padding: 6px 12px; border-radius: 999px; font-size: 12px; letter-spacing: 1.2px; }
 .winner-card .info { display: grid; align-content: center; gap: 12px; }
 .winner-card .info .label { color: #e5e7eb; opacity: 0.7; margin-right: 10px; }
