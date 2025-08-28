@@ -178,8 +178,6 @@
     statusEl && (statusEl.textContent = '준비되었습니다. START를 눌러주세요.');
     // 첫 로드시 자동 리셋
     onReset();
-    // 파티클 초기화
-    initParticles();
   }).catch((e) => {
     console.log('[pira] list.json load failed', e);
     // 메시지는 fetchStudents 내부에서 설정됨
@@ -187,45 +185,6 @@
 
   if (startBtn) startBtn.addEventListener('click', onStart);
   if (resetBtn) resetBtn.addEventListener('click', onReset);
-
-  // Particles (Canvas)
-  function initParticles() {
-    const canvas = document.getElementById('bg-particles');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const DPR = Math.min(2, window.devicePixelRatio || 1);
-    function resize() {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * DPR;
-      canvas.height = rect.height * DPR;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-    const particles = Array.from({ length: 80 }).map(() => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.6 + 0.4,
-      vx: (Math.random() - 0.5) * 0.15,
-      vy: (Math.random() - 0.5) * 0.15,
-      c: Math.random() < 0.5 ? 'rgba(244,212,122,.55)' : 'rgba(52,211,153,.45)'
-    }));
-    function step() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const p of particles) {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
-        ctx.beginPath();
-        ctx.fillStyle = p.c;
-        ctx.shadowBlur = 12 * DPR;
-        ctx.shadowColor = p.c;
-        ctx.arc(p.x, p.y, p.r * DPR, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
 })();
 
 
