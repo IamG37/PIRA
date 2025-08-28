@@ -28,8 +28,8 @@ body {
 
 .draw-section { padding: 56px 0 72px; }
 .stage { position: relative; min-height: 64vh; display: grid; place-items: center; }
-.sequence { display: grid; gap: 14px; text-align: center; }
-.seq-item { font-size: clamp(36px, 8vw, 84px); font-weight: 900; letter-spacing: 2px; opacity: 0; transform: scale(0.9); text-transform: none; filter: blur(6px); }
+.sequence { position: relative; min-height: 30vh; display: block; }
+.seq-item { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(40px, 10vw, 96px); font-weight: 900; letter-spacing: 2px; opacity: 0; transform: translateY(0) scale(0.9); text-transform: none; filter: blur(6px); }
 .seq-item.gold { background: linear-gradient(135deg, #fff, #fde68a, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 8px 36px rgba(0,0,0,.45); }
 
 .winner-card { position: absolute; inset: 0; margin: auto; width: min(720px, 92%); height: min(380px, 62vh); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); opacity: 0; transform: scale(0.92); pointer-events: none; }
@@ -62,17 +62,17 @@ pre { background: #0a0f16; padding: 16px; border-radius: 12px; overflow: auto; b
 
 /* Animations */
 /* Step reveal: blur -> sharp + scale */
-.step-reveal { animation: revealStep .8s cubic-bezier(.2,.8,.2,1) forwards; }
-.step-reveal-delay { animation: revealStep .8s cubic-bezier(.2,.8,.2,1) .8s forwards; }
-.step-reveal-delay-2 { animation: revealStep .8s cubic-bezier(.2,.8,.2,1) 1.6s forwards; }
+/* One-by-one step: pop in, then fade out */
+.pop-one { animation: popOne 1s cubic-bezier(.2,.8,.2,1) forwards; }
 
 .reveal-card { animation: revealCard .9s cubic-bezier(.2,.9,.2,1.2) forwards; }
 .glow { animation: glowPulse 1.8s ease-in-out 1.2s infinite; }
 
-@keyframes revealStep {
-  0% { opacity: 0; transform: translateY(10px) scale(.9); filter: blur(6px); }
-  60% { opacity: 1; transform: translateY(0) scale(1.06); filter: blur(2px); }
-  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+@keyframes popOne {
+  0% { opacity: 0; transform: translateY(8px) scale(.9); filter: blur(6px); }
+  25% { opacity: 1; transform: translateY(0) scale(1.06); filter: blur(2px); }
+  60% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-6px) scale(.96); filter: blur(4px); }
 }
 
 @keyframes revealCard {

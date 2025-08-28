@@ -76,30 +76,29 @@
   async function runSequence(student) {
     statusEl && (statusEl.textContent = '');
 
-    // 순서: 학년 -> 반 -> 이름
+    // 순서: 학년 -> 반 -> 이름 (한 번에 하나만 화면 중앙 표시)
     seqGrade.textContent = `${student.grade}학년`;
     seqClass.textContent = `${student.class}반`;
     seqName.textContent = `${student.name}`;
 
-    seqClass.classList.remove('step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
-    seqGrade.classList.remove('step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
-    seqName.classList.remove('step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
+    [seqGrade, seqClass, seqName].forEach(el => {
+      el.classList.remove('pop-one', 'step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
+      el.style.opacity = '0';
+      el.style.filter = 'blur(6px)';
+      el.style.transform = 'translateY(0) scale(.9)';
+    });
     card.classList.remove('reveal-card');
 
     card.setAttribute('aria-hidden', 'true');
-    seqClass.style.opacity = '0';
-    seqGrade.style.opacity = '0';
-    seqName.style.opacity = '0';
-
-    await wait(180);
+    await wait(150);
     flashStage();
-    seqGrade.classList.add('step-reveal');
-    await wait(800);
+    seqGrade.classList.add('pop-one');
+    await wait(1000);
     flashStage();
-    seqClass.classList.add('step-reveal');
-    await wait(800);
+    seqClass.classList.add('pop-one');
+    await wait(1000);
     flashStage();
-    seqName.classList.add('step-reveal');
+    seqName.classList.add('pop-one');
 
     await wait(400);
     cardGrade.textContent = `${student.grade}`;
