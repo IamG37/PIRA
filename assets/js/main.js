@@ -112,12 +112,10 @@
     card.setAttribute('aria-hidden', 'false');
     card.classList.add('reveal-card', 'glow');
 
-    // Ceremony overlay: full line text
+    // Ceremony overlay: full line text (유지)
     if (ceremony && ceremonyText) {
       ceremonyText.textContent = `${student.grade}학년 ${student.class}반 ${student.name}`;
       ceremony.setAttribute('aria-hidden', 'false');
-      // 결과는 유지하되, 세레모니는 짧게만 노출
-      setTimeout(() => { ceremony.setAttribute('aria-hidden', 'true'); }, 1000);
     }
   }
 
