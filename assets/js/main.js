@@ -76,13 +76,14 @@
   async function runSequence(student) {
     statusEl && (statusEl.textContent = '');
 
-    seqClass.textContent = `${student.class}반`;
+    // 순서: 학년 -> 반 -> 이름
     seqGrade.textContent = `${student.grade}학년`;
+    seqClass.textContent = `${student.class}반`;
     seqName.textContent = `${student.name}`;
 
-    seqClass.classList.remove('fade-pop', 'fade-pop-delay-1', 'fade-pop-delay-2');
-    seqGrade.classList.remove('fade-pop', 'fade-pop-delay-1', 'fade-pop-delay-2');
-    seqName.classList.remove('fade-pop', 'fade-pop-delay-1', 'fade-pop-delay-2');
+    seqClass.classList.remove('step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
+    seqGrade.classList.remove('step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
+    seqName.classList.remove('step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
     card.classList.remove('reveal-card');
 
     card.setAttribute('aria-hidden', 'true');
@@ -90,22 +91,22 @@
     seqGrade.style.opacity = '0';
     seqName.style.opacity = '0';
 
-    await wait(150);
+    await wait(180);
     flashStage();
-    seqClass.classList.add('fade-pop');
-    await wait(240);
+    seqGrade.classList.add('step-reveal');
+    await wait(800);
     flashStage();
-    seqGrade.classList.add('fade-pop');
-    await wait(240);
+    seqClass.classList.add('step-reveal');
+    await wait(800);
     flashStage();
-    seqName.classList.add('fade-pop');
+    seqName.classList.add('step-reveal');
 
     await wait(400);
     cardGrade.textContent = `${student.grade}`;
     cardClass.textContent = `${student.class}`;
     cardName.textContent = `${student.name}`;
     card.setAttribute('aria-hidden', 'false');
-    card.classList.add('reveal-card');
+    card.classList.add('reveal-card', 'glow');
   }
 
   function flashStage() {

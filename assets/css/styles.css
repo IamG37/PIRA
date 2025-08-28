@@ -28,11 +28,11 @@ body {
 
 .draw-section { padding: 56px 0 72px; }
 .stage { position: relative; min-height: 64vh; display: grid; place-items: center; }
-.sequence { display: grid; gap: 10px; text-align: center; }
-.seq-item { font-size: clamp(36px, 8vw, 78px); font-weight: 900; letter-spacing: 2px; opacity: 0; transform: scale(0.9); text-transform: none; }
+.sequence { display: grid; gap: 14px; text-align: center; }
+.seq-item { font-size: clamp(36px, 8vw, 84px); font-weight: 900; letter-spacing: 2px; opacity: 0; transform: scale(0.9); text-transform: none; filter: blur(6px); }
 .seq-item.gold { background: linear-gradient(135deg, #fff, #fde68a, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 8px 36px rgba(0,0,0,.45); }
 
-.winner-card { position: absolute; inset: 0; margin: auto; width: min(680px, 92%); height: min(360px, 60vh); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); opacity: 0; transform: scale(0.92); pointer-events: none; }
+.winner-card { position: absolute; inset: 0; margin: auto; width: min(720px, 92%); height: min(380px, 62vh); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); opacity: 0; transform: scale(0.92); pointer-events: none; }
 .winner-card[aria-hidden="true"] { display: none; }
 .winner-card[aria-hidden="false"] { display: grid; }
 .winner-card .badge { justify-self: start; background: linear-gradient(135deg, var(--primary), #fde68a); color: var(--primary-contrast); font-weight: 900; padding: 6px 12px; border-radius: 999px; font-size: 12px; letter-spacing: 1.2px; }
@@ -61,21 +61,29 @@ pre { background: #0a0f16; padding: 16px; border-radius: 12px; overflow: auto; b
 }
 
 /* Animations */
-.fade-pop { animation: fadePop .45s ease forwards; }
-.fade-pop-delay-1 { animation: fadePop .45s ease .12s forwards; }
-.fade-pop-delay-2 { animation: fadePop .45s ease .24s forwards; }
+/* Step reveal: blur -> sharp + scale */
+.step-reveal { animation: revealStep .8s cubic-bezier(.2,.8,.2,1) forwards; }
+.step-reveal-delay { animation: revealStep .8s cubic-bezier(.2,.8,.2,1) .8s forwards; }
+.step-reveal-delay-2 { animation: revealStep .8s cubic-bezier(.2,.8,.2,1) 1.6s forwards; }
 
-.reveal-card { animation: revealCard .6s cubic-bezier(.2,.9,.2,1.2) forwards; }
+.reveal-card { animation: revealCard .9s cubic-bezier(.2,.9,.2,1.2) forwards; }
+.glow { animation: glowPulse 1.8s ease-in-out 1.2s infinite; }
 
-@keyframes fadePop {
-  from { opacity: 0; transform: translateY(10px) scale(.9); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes revealStep {
+  0% { opacity: 0; transform: translateY(10px) scale(.9); filter: blur(6px); }
+  60% { opacity: 1; transform: translateY(0) scale(1.06); filter: blur(2px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
 @keyframes revealCard {
-  0% { opacity: 0; transform: scale(.92) translateY(10px); }
-  60% { opacity: 1; transform: scale(1.04); }
-  100% { opacity: 1; transform: scale(1); }
+  0% { opacity: 0; transform: translateY(10px) scale(.92); box-shadow: 0 10px 40px rgba(0,0,0,.35); }
+  55% { opacity: 1; transform: translateY(-2px) scale(1.08); box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 30px rgba(252,211,77,.35); }
+  100% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 16px 50px rgba(0,0,0,.4), 0 0 16px rgba(252,211,77,.25); }
+}
+
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 16px 50px rgba(0,0,0,.4), 0 0 12px rgba(252,211,77,.18); border-color: rgba(252,211,77,.35); }
+  50% { box-shadow: 0 20px 70px rgba(0,0,0,.46), 0 0 26px rgba(252,211,77,.45); border-color: rgba(252,211,77,.55); }
 }
 
 /* Pack opening visuals */
