@@ -51,12 +51,15 @@
 
   async function fetchStudents() {
     try {
-      const res = await fetch('list.json', { cache: 'no-store' });
+      const listUrl = new URL('./list.json', window.location.href).toString();
+      const res = await fetch(listUrl, { cache: 'no-store' });
       if (!res.ok) throw new Error('list.json load failed');
       const data = await res.json();
       if (!Array.isArray(data)) throw new Error('Invalid list.json');
       students = data.filter(Boolean);
+      if (!students.length) throw new Error('Empty list.json');
     } catch (err) {
+      console.error(err);
       statusEl && (statusEl.textContent = '데이터를 불러오지 못했습니다. list.json을 확인해주세요.');
       throw err;
     }
@@ -102,6 +105,7 @@
   }
 
   async function onStart() {
+    if (!startBtn) return;
     startBtn.disabled = true;
     try {
       if (!students.length) await fetchStudents();
@@ -114,7 +118,7 @@
       usedIds.add(computeId(candidate));
       persistUsed();
     } catch (e) {
-      // shown above
+      statusEl && (statusEl.textContent = '오류가 발생했습니다. 콘솔을 확인해 주세요.');
     } finally {
       startBtn.disabled = false;
     }
@@ -127,6 +131,13 @@
   }
 
   loadUsed();
+  // 선로드 후 상태 표시
+  fetchStudents().then(() => {
+    statusEl && (statusEl.textContent = '준비되었습니다. START를 눌러주세요.');
+  }).catch(() => {
+    // 메시지는 fetchStudents 내부에서 설정됨
+  });
+
   if (startBtn) startBtn.addEventListener('click', onStart);
   if (resetBtn) resetBtn.addEventListener('click', onReset);
 })();
