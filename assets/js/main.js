@@ -88,6 +88,8 @@
       el.style.opacity = '0';
       el.style.filter = 'blur(6px)';
       el.style.transform = 'translateY(0) scale(.9)';
+      // 강제 리플로우로 애니메이션 재생 보장
+      void el.offsetWidth;
     });
     card.classList.remove('reveal-card');
 
