@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="pira - GitHub Pages 정적 사이트">
+    <title>pira</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>pira</h1>
+        <nav class="site-nav" aria-label="주요">
+          <a href="./">홈</a>
+          <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h2>GitHub Pages에 곧 배포될 사이트</h2>
+        <p>이 페이지는 <strong>GitHub Pages</strong>에서 서빙되도록 준비되었습니다.</p>
+        <button id="cta-button" class="btn-primary">작동 테스트</button>
+        <p id="cta-result" class="muted" aria-live="polite"></p>
+      </section>
+
+      <section>
+        <h3>프로젝트 구조</h3>
+        <pre><code>
+.
+├── index.html
+├── 404.html
+├── assets/
+│   ├── css/styles.css
+│   ├── js/main.js
+│   └── favicon.svg
+└── .github/workflows/deploy.yml
+        </code></pre>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>© <span id="year"></span> pira</span>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+  </html>
+
+
