@@ -91,10 +91,13 @@
     seqName.style.opacity = '0';
 
     await wait(150);
+    flashStage();
     seqClass.classList.add('fade-pop');
     await wait(240);
+    flashStage();
     seqGrade.classList.add('fade-pop');
     await wait(240);
+    flashStage();
     seqName.classList.add('fade-pop');
 
     await wait(400);
@@ -103,6 +106,13 @@
     cardName.textContent = `${student.name}`;
     card.setAttribute('aria-hidden', 'false');
     card.classList.add('reveal-card');
+  }
+
+  function flashStage() {
+    const stage = document.querySelector('.pack .pulse');
+    if (!stage) return;
+    stage.style.boxShadow = '0 0 60px rgba(252,211,77,.45), inset 0 0 40px rgba(167,139,250,.35)';
+    setTimeout(() => { stage.style.boxShadow = 'none'; }, 180);
   }
 
   async function onStart() {

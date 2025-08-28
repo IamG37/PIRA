@@ -27,18 +27,19 @@ body {
 .site-nav a:hover { color: var(--text); }
 
 .draw-section { padding: 56px 0 72px; }
-.stage { position: relative; min-height: 46vh; display: grid; place-items: center; }
+.stage { position: relative; min-height: 64vh; display: grid; place-items: center; }
 .sequence { display: grid; gap: 10px; text-align: center; }
-.seq-item { font-size: clamp(28px, 6vw, 58px); font-weight: 800; letter-spacing: 2px; opacity: 0; transform: scale(0.9); }
+.seq-item { font-size: clamp(36px, 8vw, 78px); font-weight: 900; letter-spacing: 2px; opacity: 0; transform: scale(0.9); text-transform: none; }
+.seq-item.gold { background: linear-gradient(135deg, #fff, #fde68a, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 8px 36px rgba(0,0,0,.45); }
 
 .winner-card { position: absolute; inset: 0; margin: auto; width: min(680px, 92%); height: min(360px, 60vh); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); opacity: 0; transform: scale(0.92); pointer-events: none; }
 .winner-card[aria-hidden="true"] { display: none; }
 .winner-card[aria-hidden="false"] { display: grid; }
 .winner-card .badge { justify-self: start; background: linear-gradient(135deg, var(--primary), #fde68a); color: var(--primary-contrast); font-weight: 900; padding: 6px 12px; border-radius: 999px; font-size: 12px; letter-spacing: 1.2px; }
-.winner-card .info { display: grid; align-content: center; gap: 12px; }
+.winner-card .info { display: grid; align-content: center; gap: 14px; }
 .winner-card .info .label { color: #e5e7eb; opacity: 0.7; margin-right: 10px; }
-.winner-card .info div { font-size: clamp(18px, 4vw, 28px); }
-.winner-card .info .name { font-size: clamp(36px, 8vw, 64px); font-weight: 900; color: #fff; text-shadow: 0 6px 26px rgba(0,0,0,0.35); }
+.winner-card .info div { font-size: clamp(20px, 4vw, 28px); }
+.winner-card .info .name { font-size: clamp(44px, 10vw, 80px); font-weight: 900; color: #fff; text-shadow: 0 10px 36px rgba(0,0,0,0.45); background: linear-gradient(135deg, #fff, #fde68a, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 .btn-lg { font-size: 18px; padding: 14px 18px; border-radius: 12px; }
 .btn-secondary { appearance: none; border: 1px solid #374151; background: transparent; color: var(--text); padding: 10px 14px; border-radius: 10px; cursor: pointer; margin-left: 10px; }
@@ -76,5 +77,15 @@ pre { background: #0a0f16; padding: 16px; border-radius: 12px; overflow: auto; b
   60% { opacity: 1; transform: scale(1.04); }
   100% { opacity: 1; transform: scale(1); }
 }
+
+/* Pack opening visuals */
+.pack { position: absolute; width: 70vmin; height: 70vmin; pointer-events: none; filter: blur(.2px); }
+.pack .radiance { position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(249, 250, 251, .14), transparent 60%); animation: radiance 2.4s ease-in-out infinite; }
+.pack .shine { position: absolute; inset: 0; background: conic-gradient(from 0deg at 50% 50%, rgba(252, 211, 77, .18), transparent 30%, rgba(167, 139, 250, .18), transparent 75%); mix-blend-mode: screen; animation: spin 6s linear infinite; }
+.pack .pulse { position: absolute; inset: 15% 15%; border-radius: 20px; border: 2px solid rgba(252,211,77,.35); animation: pulse 1.8s ease-in-out infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100% { transform: scale(.98); opacity: .6;} 50% { transform: scale(1.04); opacity: 1; } }
+@keyframes radiance { 0%,100% { opacity: .65; } 50% { opacity: .9; } }
 
 
