@@ -62,15 +62,15 @@ pre { background: #0a0f16; padding: 16px; border-radius: 12px; overflow: auto; b
 /* PC vs Mobile 반응형 */
 @media (min-width: 768px) {
   .draw-section { padding: 0; min-height: 100vh; }
-  .stage { min-height: 70vh; }
+  .stage { min-height: 70vh; transform: translateY(8vh); }
   .winner-card { width: min(720px, 92%); height: min(380px, 62vh); }
   .seq-item { font-size: clamp(34px, 7vw, 72px); }
   .ceremony #ceremony-text { font-size: clamp(44px, 10vw, 108px); }
 }
 
 @media (max-width: 767px) {
-  .draw-section { padding: 0; min-height: 100vh; }
-  .stage { min-height: 60vh; }
+  .draw-section { padding: 0; min-height: 100vh; overflow: hidden; }
+  .stage { min-height: 60vh; transform: translateY(0); }
   .winner-card { width: 92%; height: min(320px, 55vh); padding: 20px; }
   .seq-item { font-size: clamp(28px, 6vw, 56px); padding: 0 6vw; }
   .ceremony #ceremony-text { font-size: clamp(32px, 8vw, 72px); }
