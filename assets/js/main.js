@@ -95,6 +95,10 @@
     for (let i = 0; i < steps.length; i++) {
       flashStage();
       seqCurrent.textContent = steps[i];
+      // 가시성 강제 보장 (애니메이션 실패 대비)
+      seqCurrent.style.zIndex = '1000';
+      seqCurrent.style.opacity = '1';
+      seqCurrent.style.filter = 'blur(2px)';
       seqCurrent.className = 'seq-item pop-one';
       void seqCurrent.offsetWidth;
       await wait(3000);
