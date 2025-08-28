@@ -116,7 +116,8 @@
     if (ceremony && ceremonyText) {
       ceremonyText.textContent = `${student.grade}학년 ${student.class}반 ${student.name}`;
       ceremony.setAttribute('aria-hidden', 'false');
-      setTimeout(() => { ceremony.setAttribute('aria-hidden', 'true'); }, 1400);
+      // 결과는 유지하되, 세레모니는 짧게만 노출
+      setTimeout(() => { ceremony.setAttribute('aria-hidden', 'true'); }, 1000);
     }
   }
 

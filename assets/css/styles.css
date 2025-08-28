@@ -17,6 +17,8 @@ body {
   background: var(--bg);
   color: var(--text);
 }
+.site-header, .site-footer { display: none !important; }
+.draw-section { padding: 6vh 0 8vh; }
 
 .container { width: min(1100px, 92%); margin: 0 auto; }
 
