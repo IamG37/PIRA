@@ -29,8 +29,8 @@ body {
 .draw-section { padding: 56px 0 72px; }
 .stage { position: relative; min-height: 64vh; display: grid; place-items: center; }
 .sequence { position: relative; min-height: 30vh; display: block; z-index: 2; }
-.seq-item { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(40px, 10vw, 96px); font-weight: 900; letter-spacing: 2px; opacity: 0; transform: translateY(0) scale(0.9); text-transform: none; filter: blur(6px); }
-.seq-item.gold { background: linear-gradient(135deg, #fff, #fde68a, #f59e0b); -webkit-background-clip: text; background-clip: text; /* 그라디언트 미지원 브라우저 대비 */ color: #fef3c7; text-shadow: 0 8px 36px rgba(0,0,0,.45); }
+.seq-item { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(40px, 10vw, 96px); font-weight: 900; letter-spacing: 2px; opacity: 0; transform: translateY(0) scale(0.9); text-transform: none; filter: blur(6px); color: #ffffff; text-shadow: 0 10px 40px rgba(0,0,0,.5); z-index: 3; pointer-events: none; }
+.seq-item.gold { background: linear-gradient(135deg, #fff, #fde68a, #f59e0b); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; /* Safari/Chrome */ color: #fef3c7; text-shadow: 0 10px 40px rgba(0,0,0,.5); }
 
 .winner-card { position: absolute; inset: 0; margin: auto; width: min(720px, 92%); height: min(380px, 62vh); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); opacity: 0; transform: scale(0.92); pointer-events: none; }
 .winner-card[aria-hidden="true"] { display: none; }

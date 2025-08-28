@@ -111,7 +111,7 @@
   function flashStage() {
     const stage = document.querySelector('.pack .pulse');
     if (!stage) return;
-    stage.style.boxShadow = '0 0 60px rgba(252,211,77,.45), inset 0 0 40px rgba(167,139,250,.35)';
+    stage.style.boxShadow = '0 0 80px rgba(252,211,77,.55), inset 0 0 50px rgba(167,139,250,.45)';
     setTimeout(() => { stage.style.boxShadow = 'none'; }, 180);
   }
 
