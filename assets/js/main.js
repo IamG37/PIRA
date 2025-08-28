@@ -96,8 +96,9 @@
       flashStage();
       seqCurrent.textContent = steps[i];
       // 가시성 강제 보장 (애니메이션 실패 대비)
-      seqCurrent.style.zIndex = '1000';
-      seqCurrent.className = 'seq-item show pop-one';
+      seqCurrent.className = 'seq-item show';
+      void seqCurrent.offsetWidth;
+      seqCurrent.classList.add('pop-one');
       void seqCurrent.offsetWidth;
       await wait(3000);
       seqCurrent.className = 'seq-item';
