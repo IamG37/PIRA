@@ -99,8 +99,7 @@
       seqCurrent.className = 'seq-item show';
       void seqCurrent.offsetWidth;
       seqCurrent.classList.add('pop-one');
-      void seqCurrent.offsetWidth;
-      await wait(3000);
+      await wait(2200);
       seqCurrent.className = 'seq-item';
       seqCurrent.style.opacity = '0';
       await wait(100);
@@ -117,10 +116,7 @@
     if (ceremony && ceremonyText) {
       ceremonyText.textContent = `${student.grade}학년 ${student.class}반 ${student.name}`;
       ceremony.setAttribute('aria-hidden', 'false');
-      // 자동 사라짐
-      setTimeout(() => {
-        ceremony.setAttribute('aria-hidden', 'true');
-      }, 2200);
+      setTimeout(() => { ceremony.setAttribute('aria-hidden', 'true'); }, 1400);
     }
   }
 
