@@ -159,6 +159,8 @@
   fetchStudents().then(() => {
     console.log('[pira] list.json loaded', students.length);
     statusEl && (statusEl.textContent = '준비되었습니다. START를 눌러주세요.');
+    // 첫 로드시 자동 리셋
+    onReset();
   }).catch((e) => {
     console.log('[pira] list.json load failed', e);
     // 메시지는 fetchStudents 내부에서 설정됨
