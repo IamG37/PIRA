@@ -12,9 +12,7 @@
   const resetBtn = document.getElementById('reset-btn');
   const statusEl = document.getElementById('status');
 
-  const seqClass = document.getElementById('seq-class');
-  const seqGrade = document.getElementById('seq-grade');
-  const seqName = document.getElementById('seq-name');
+  const seqCurrent = document.getElementById('seq-current');
 
   const card = document.getElementById('winner-card');
   const cardGrade = document.getElementById('card-grade');
@@ -79,30 +77,31 @@
     statusEl && (statusEl.textContent = '');
 
     // 순서: 학년 -> 반 -> 이름 (한 번에 하나만 화면 중앙 표시)
-    seqGrade.textContent = `${student.grade}학년`;
-    seqClass.textContent = `${student.class}반`;
-    seqName.textContent = `${student.name}`;
+    const steps = [
+      `${student.grade}학년`,
+      `${student.class}반`,
+      `${student.name}`
+    ];
 
-    [seqGrade, seqClass, seqName].forEach(el => {
-      el.classList.remove('pop-one', 'step-reveal', 'step-reveal-delay', 'step-reveal-delay-2', 'fade-pop');
-      el.style.opacity = '0';
-      el.style.filter = 'blur(6px)';
-      el.style.transform = 'translateY(0) scale(.9)';
-      // 강제 리플로우로 애니메이션 재생 보장
-      void el.offsetWidth;
-    });
+    seqCurrent.className = 'seq-item';
+    seqCurrent.style.opacity = '0';
+    seqCurrent.style.filter = 'blur(6px)';
+    seqCurrent.style.transform = 'translateY(0) scale(.9)';
+    void seqCurrent.offsetWidth;
     card.classList.remove('reveal-card');
 
     card.setAttribute('aria-hidden', 'true');
     await wait(150);
-    flashStage();
-    seqGrade.classList.add('pop-one');
-    await wait(2400);
-    flashStage();
-    seqClass.classList.add('pop-one');
-    await wait(2400);
-    flashStage();
-    seqName.classList.add('pop-one');
+    for (let i = 0; i < steps.length; i++) {
+      flashStage();
+      seqCurrent.textContent = steps[i];
+      seqCurrent.className = 'seq-item pop-one';
+      void seqCurrent.offsetWidth;
+      await wait(3000);
+      seqCurrent.className = 'seq-item';
+      seqCurrent.style.opacity = '0';
+      await wait(100);
+    }
 
     await wait(400);
     cardGrade.textContent = `${student.grade}`;
