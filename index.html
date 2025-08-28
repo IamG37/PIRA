@@ -20,25 +20,30 @@
     </header>
 
     <main class="container">
-      <section class="hero">
-        <h2>GitHub Pages에 곧 배포될 사이트</h2>
-        <p>이 페이지는 <strong>GitHub Pages</strong>에서 서빙되도록 준비되었습니다.</p>
-        <button id="cta-button" class="btn-primary">작동 테스트</button>
-        <p id="cta-result" class="muted" aria-live="polite"></p>
-      </section>
+      <section class="draw-section" aria-live="polite">
+        <div class="stage">
+          <div id="sequence" class="sequence">
+            <span class="seq-item" id="seq-class"></span>
+            <span class="seq-item" id="seq-grade"></span>
+            <span class="seq-item" id="seq-name"></span>
+          </div>
 
-      <section>
-        <h3>프로젝트 구조</h3>
-        <pre><code>
-.
-├── index.html
-├── 404.html
-├── assets/
-│   ├── css/styles.css
-│   ├── js/main.js
-│   └── favicon.svg
-└── .github/workflows/deploy.yml
-        </code></pre>
+          <div id="winner-card" class="winner-card" aria-hidden="true">
+            <div class="badge">WINNER</div>
+            <div class="info">
+              <div><span class="label">학년</span><span id="card-grade"></span></div>
+              <div><span class="label">반</span><span id="card-class"></span></div>
+              <div class="name" id="card-name"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="start-btn" class="btn-primary btn-lg">START</button>
+          <button id="reset-btn" class="btn-secondary" title="기록 초기화">RESET</button>
+        </div>
+
+        <p id="status" class="muted status"></p>
       </section>
     </main>
 
