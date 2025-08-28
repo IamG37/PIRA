@@ -1,12 +1,11 @@
 :root {
-  --bg: radial-gradient(1200px 600px at 20% 0%, #0b1220 0%, #0b0f14 55%, #0a0813 100%);
-  --panel: rgba(17, 24, 39, 0.6);
-  --text: #f9fafb;
-  --muted: #9ca3af;
-  --primary: #fbbf24; /* gold */
-  --primary-contrast: #111827;
-  --accent: #8b5cf6; /* purple */
-  --accent-2: #3b82f6; /* blue */
+  --bg: radial-gradient(1400px 700px at 20% 0%, #0a1432 0%, #0a0f2a 50%, #0a091a 100%);
+  --panel: rgba(10, 16, 36, 0.7);
+  --text: #ecf3ff;
+  --muted: #98a6c0;
+  --primary: #f4d47a; /* gold */
+  --primary-contrast: #0b1022;
+  --teal: #34d399; /* emerald */
 }
 
 * { box-sizing: border-box; }
@@ -35,14 +34,14 @@ body {
 .seq-item.show { transform: translate(-50%, -50%); filter: none; }
 .seq-item.gold { background: none; color: #ffffff; text-shadow: 0 10px 40px rgba(0,0,0,.6); }
 
-.winner-card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.92); margin: 0; width: min(720px, 92%); height: min(380px, 62vh); background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); opacity: 0; pointer-events: none; }
+.winner-card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.92); margin: 0; width: min(720px, 92%); height: min(380px, 62vh); background: linear-gradient(145deg, rgba(10,16,36,0.9), rgba(18,26,60,0.75)); border: 1px solid rgba(244,212,122,.45); border-radius: 22px; padding: 28px; display: grid; grid-template-rows: auto 1fr; gap: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.45), 0 0 24px rgba(52,211,153,.18), 0 0 20px rgba(244,212,122,.25); opacity: 0; pointer-events: none; }
 .winner-card[aria-hidden="true"] { display: none; }
 .winner-card[aria-hidden="false"] { display: grid; }
-.winner-card .badge { justify-self: start; background: linear-gradient(135deg, var(--primary), #fde68a); color: var(--primary-contrast); font-weight: 900; padding: 6px 12px; border-radius: 999px; font-size: 12px; letter-spacing: 1.2px; }
+.winner-card .badge { justify-self: start; background: linear-gradient(135deg, var(--primary), #ffe9a8); color: var(--primary-contrast); font-weight: 900; padding: 6px 12px; border-radius: 999px; font-size: 12px; letter-spacing: 1.2px; box-shadow: 0 0 8px rgba(244,212,122,.35); }
 .winner-card .info { display: grid; align-content: center; gap: 14px; }
 .winner-card .info .label { color: #e5e7eb; opacity: 0.7; margin-right: 10px; }
 .winner-card .info div { font-size: clamp(20px, 4vw, 28px); }
-.winner-card .info .name { font-size: clamp(44px, 10vw, 80px); font-weight: 900; color: #fff; text-shadow: 0 10px 36px rgba(0,0,0,0.45); background: linear-gradient(135deg, #fff, #fde68a, #f59e0b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.winner-card .info .name { font-size: clamp(44px, 10vw, 80px); font-weight: 900; color: #fff; text-shadow: 0 10px 36px rgba(0,0,0,0.45); background: linear-gradient(135deg, var(--primary), var(--teal)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 .btn-lg { font-size: 18px; padding: 14px 18px; border-radius: 12px; }
 .btn-secondary { appearance: none; border: 1px solid #374151; background: transparent; color: var(--text); padding: 10px 14px; border-radius: 10px; cursor: pointer; margin-left: 10px; }
@@ -69,7 +68,7 @@ pre { background: #0a0f16; padding: 16px; border-radius: 12px; overflow: auto; b
 /* One-by-one step: pop in, then fade out */
 .pop-one { animation: popOne 2.2s cubic-bezier(.2,.8,.2,1) forwards; }
 
-.reveal-card { animation: revealCard .9s cubic-bezier(.2,.9,.2,1.2) forwards; }
+.reveal-card { animation: revealCard .9s cubic-bezier(.2,.9,.2,1.2) forwards, cardGlow 2.4s ease-in-out 1.2s infinite alternate; }
 .glow { animation: glowPulse 1.8s ease-in-out 1.2s infinite; }
 
 @keyframes popOne {
@@ -81,8 +80,12 @@ pre { background: #0a0f16; padding: 16px; border-radius: 12px; overflow: auto; b
 
 @keyframes revealCard {
   0% { opacity: 0; transform: translateY(10px) scale(.92); box-shadow: 0 10px 40px rgba(0,0,0,.35); }
-  55% { opacity: 1; transform: translateY(-2px) scale(1.08); box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 30px rgba(252,211,77,.35); }
-  100% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 16px 50px rgba(0,0,0,.4), 0 0 16px rgba(252,211,77,.25); }
+  55% { opacity: 1; transform: translateY(-2px) scale(1.08); box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 30px rgba(244,212,122,.35), 0 0 22px rgba(52,211,153,.18); }
+  100% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 16px 50px rgba(0,0,0,.4), 0 0 16px rgba(244,212,122,.25), 0 0 14px rgba(52,211,153,.12); }
+}
+@keyframes cardGlow {
+  0% { box-shadow: 0 16px 50px rgba(0,0,0,.4), 0 0 14px rgba(244,212,122,.2), 0 0 10px rgba(52,211,153,.12); }
+  100% { box-shadow: 0 18px 60px rgba(0,0,0,.46), 0 0 24px rgba(244,212,122,.35), 0 0 18px rgba(52,211,153,.25); }
 }
 
 @keyframes glowPulse {
