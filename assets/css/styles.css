@@ -70,10 +70,10 @@ pre { background: #0a0f16; padding: 16px; border-radius: 12px; overflow: auto; b
 .glow { animation: glowPulse 1.8s ease-in-out 1.2s infinite; }
 
 @keyframes popOne {
-  0% { transform: translateY(8px) scale(.9); filter: blur(6px); }
-  18% { transform: translateY(0) scale(1.06); filter: blur(2px); }
-  82% { transform: translateY(0) scale(1); filter: blur(0); }
-  100% { transform: translateY(-6px) scale(.96); filter: blur(4px); }
+  0% { transform: translate(-50%, -50%) scale(.9); filter: blur(6px); }
+  18% { transform: translate(-50%, -50%) scale(1.06); filter: blur(2px); }
+  82% { transform: translate(-50%, -50%) scale(1); filter: blur(0); }
+  100% { transform: translate(-50%, -50%) scale(.96); filter: blur(4px); }
 }
 
 @keyframes revealCard {
