@@ -20,6 +20,8 @@
   const cardGrade = document.getElementById('card-grade');
   const cardClass = document.getElementById('card-class');
   const cardName = document.getElementById('card-name');
+  const ceremony = document.getElementById('ceremony');
+  const ceremonyText = document.getElementById('ceremony-text');
 
   /** Utils */
   function wait(ms) {
@@ -93,10 +95,10 @@
     await wait(150);
     flashStage();
     seqGrade.classList.add('pop-one');
-    await wait(1600);
+    await wait(2400);
     flashStage();
     seqClass.classList.add('pop-one');
-    await wait(1600);
+    await wait(2400);
     flashStage();
     seqName.classList.add('pop-one');
 
@@ -106,6 +108,16 @@
     cardName.textContent = `${student.name}`;
     card.setAttribute('aria-hidden', 'false');
     card.classList.add('reveal-card', 'glow');
+
+    // Ceremony overlay: full line text
+    if (ceremony && ceremonyText) {
+      ceremonyText.textContent = `${student.grade}학년 ${student.class}반 ${student.name}`;
+      ceremony.setAttribute('aria-hidden', 'false');
+      // 자동 사라짐
+      setTimeout(() => {
+        ceremony.setAttribute('aria-hidden', 'true');
+      }, 2200);
+    }
   }
 
   function flashStage() {
