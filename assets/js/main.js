@@ -93,10 +93,10 @@
     await wait(150);
     flashStage();
     seqGrade.classList.add('pop-one');
-    await wait(1000);
+    await wait(1600);
     flashStage();
     seqClass.classList.add('pop-one');
-    await wait(1000);
+    await wait(1600);
     flashStage();
     seqName.classList.add('pop-one');
 
