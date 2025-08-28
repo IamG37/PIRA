@@ -37,6 +37,22 @@
     } catch (e) {}
   }
 
+  function hideResults() {
+    try {
+      if (ceremony) ceremony.setAttribute('aria-hidden', 'true');
+      if (ceremonyText) ceremonyText.textContent = '';
+      if (card) {
+        card.setAttribute('aria-hidden', 'true');
+        card.classList.remove('reveal-card', 'glow');
+      }
+      if (seqCurrent) {
+        seqCurrent.className = 'seq-item';
+        seqCurrent.textContent = '';
+        seqCurrent.style.opacity = '0';
+      }
+    } catch (_) {}
+  }
+
   function loadUsed() {
     try {
       const raw = localStorage.getItem('pira:used');
@@ -130,6 +146,8 @@
     if (!startBtn) return;
     startBtn.disabled = true;
     try {
+      // 이전 결과 화면이 남아있지 않도록 정리
+      hideResults();
       if (!students.length) await fetchStudents();
       const candidate = pickRandomCandidate();
       if (!candidate) {
@@ -149,6 +167,7 @@
   function onReset() {
     usedIds.clear();
     persistUsed();
+    hideResults();
     statusEl && (statusEl.textContent = '초기화되었습니다.');
   }
 
