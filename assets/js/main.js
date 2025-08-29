@@ -20,6 +20,7 @@
   const cardName = document.getElementById('card-name');
   const ceremony = document.getElementById('ceremony');
   const ceremonyText = document.getElementById('ceremony-text');
+  const fxRoot = document.getElementById('fx');
 
   /** Utils */
   function wait(ms) {
@@ -50,6 +51,8 @@
         seqCurrent.textContent = '';
         seqCurrent.style.opacity = '0';
       }
+      // remove leftover fx
+      if (fxRoot) fxRoot.innerHTML = '';
     } catch (_) {}
   }
 
@@ -133,6 +136,9 @@
       ceremonyText.textContent = `${student.class}분임 ${student.grade}학년 ${student.name}`;
       ceremony.setAttribute('aria-hidden', 'false');
     }
+
+    // Trigger fireworks FX behind text
+    triggerFireworksFX();
   }
 
   function flashStage() {
@@ -140,6 +146,34 @@
     if (!stage) return;
     stage.style.boxShadow = '0 0 90px rgba(244,212,122,.55), inset 0 0 60px rgba(52,211,153,.35)';
     setTimeout(() => { stage.style.boxShadow = 'none'; }, 180);
+  }
+
+  function triggerFireworksFX() {
+    if (!fxRoot) return;
+    fxRoot.innerHTML = '';
+    const duration = 1200; // 1.2s
+    const countPerSide = 18;
+    const sides = ['left', 'right'];
+    sides.forEach(side => {
+      for (let i = 0; i < countPerSide; i++) {
+        const s = document.createElement('div');
+        s.className = 'spark';
+        const baseX = side === 'left' ? '10%' : '90%';
+        const jitterX = (Math.random() * 40 - 20) + 'px';
+        const startY = '80%';
+        const endX = side === 'left' ? (Math.random() * 80 + 40) + 'px' : -(Math.random() * 80 + 40) + 'px';
+        const endY = -(Math.random() * 160 + 120) + 'px';
+        s.style.left = `calc(${baseX} + ${jitterX})`;
+        s.style.top = startY;
+        s.style.setProperty('--x', '0px');
+        s.style.setProperty('--y', '0px');
+        s.style.setProperty('--xEnd', endX);
+        s.style.setProperty('--yEnd', endY);
+        s.style.animation = `sparkUp ${900 + Math.random()*600}ms ease-out forwards`;
+        fxRoot.appendChild(s);
+      }
+    });
+    setTimeout(() => { if (fxRoot) fxRoot.innerHTML = ''; }, duration + 400);
   }
 
   async function onStart() {
