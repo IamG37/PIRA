@@ -151,29 +151,40 @@
   function triggerFireworksFX() {
     if (!fxRoot) return;
     fxRoot.innerHTML = '';
-    const duration = 1200; // 1.2s
-    const countPerSide = 18;
+    const totalDuration = 2600; // 총 2.6s
+    const waves = 4;
+    const interval = 450; // 파파파팍 간격
+    const countPerSide = 20; // 각 웨이브 당 좌/우 개수
     const sides = ['left', 'right'];
-    sides.forEach(side => {
-      for (let i = 0; i < countPerSide; i++) {
-        const s = document.createElement('div');
-        s.className = 'spark';
-        const baseX = side === 'left' ? '10%' : '90%';
-        const jitterX = (Math.random() * 40 - 20) + 'px';
-        const startY = '80%';
-        const endX = side === 'left' ? (Math.random() * 80 + 40) + 'px' : -(Math.random() * 80 + 40) + 'px';
-        const endY = -(Math.random() * 160 + 120) + 'px';
-        s.style.left = `calc(${baseX} + ${jitterX})`;
-        s.style.top = startY;
-        s.style.setProperty('--x', '0px');
-        s.style.setProperty('--y', '0px');
-        s.style.setProperty('--xEnd', endX);
-        s.style.setProperty('--yEnd', endY);
-        s.style.animation = `sparkUp ${900 + Math.random()*600}ms ease-out forwards`;
-        fxRoot.appendChild(s);
-      }
-    });
-    setTimeout(() => { if (fxRoot) fxRoot.innerHTML = ''; }, duration + 400);
+
+    function spawnWave() {
+      sides.forEach(side => {
+        for (let i = 0; i < countPerSide; i++) {
+          const s = document.createElement('div');
+          s.className = 'spark';
+          const baseX = side === 'left' ? '10%' : '90%';
+          const jitterX = (Math.random() * 60 - 30) + 'px';
+          const startY = '82%';
+          const endX = side === 'left' ? (Math.random() * 120 + 40) + 'px' : -(Math.random() * 120 + 40) + 'px';
+          const endY = -(Math.random() * 220 + 160) + 'px';
+          s.style.left = `calc(${baseX} + ${jitterX})`;
+          s.style.top = startY;
+          s.style.setProperty('--x', '0px');
+          s.style.setProperty('--y', '0px');
+          s.style.setProperty('--xEnd', endX);
+          s.style.setProperty('--yEnd', endY);
+          const dur = 1100 + Math.random() * 900; // 1.1s ~ 2.0s
+          const delay = Math.random() * 120; // 약간의 개인 차
+          s.style.animation = `sparkUp ${dur}ms ease-out ${delay}ms forwards`;
+          fxRoot.appendChild(s);
+        }
+      });
+    }
+
+    for (let w = 0; w < waves; w++) {
+      setTimeout(spawnWave, w * interval);
+    }
+    setTimeout(() => { if (fxRoot) fxRoot.innerHTML = ''; }, totalDuration + 600);
   }
 
   async function onStart() {
